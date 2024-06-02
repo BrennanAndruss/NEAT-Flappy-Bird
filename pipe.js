@@ -2,9 +2,9 @@ import { canvas, ctx } from "./main.js";
 
 export default class Pipe {
   constructor() {
-    this.spacing = 100;
-    this.top = Math.random() * (canvas.height - this.spacing);
-    this.bottom = this.top + this.spacing;
+    this.gap = 100;
+    this.top = Math.random() * (canvas.height - this.gap * 3) + this.gap;
+    this.bottom = this.top + this.gap;
     this.x = canvas.width;
     this.w = 20;
     this.velocity = 2;
