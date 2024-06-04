@@ -1,4 +1,4 @@
-import { canvas, ctx } from "./main.js";
+import { canvas, ctx, mutationRate } from "./main.js";
 import NeuralNetwork from "./nn.js";
 
 export default class Bird {
@@ -47,7 +47,7 @@ export default class Bird {
   }
 
   mutate() {
-    this.brain.mutate(0.1);
+    this.brain.mutate(mutationRate);
   }
 
   dispose() {
@@ -71,7 +71,7 @@ export default class Bird {
   }
 
   show() {
-    ctx.fillStyle = "lightgrey";
+    ctx.fillStyle = "yellow";
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
     ctx.fill();

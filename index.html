@@ -14,9 +14,176 @@
 </head>
 
 <body>
-  <div class="canvas-container">
-    <canvas></canvas>
+  <div class="site-container">
+    <div class="title">
+      <h1>Neuroevolution</h1>
+      <p>Brennan Andruss</p>
+    </div>
+    <hr>
+    <div class="text">
+      <p>
+        So, what is Neuroevolution?
+      </p>
+      <p>
+        Neuroevolution is a biologically-insipred system that uses Darwinian principles to evolve the parameters of a
+        nerual network over
+        generations of trial-and-error learning. It is the combination of two biomimetic designs in computer science:
+        genetic algorithms and neural networks.
+      </p>
+      <h3>The Design of Neuroevolution</h3>
+      <p>
+        The foundation of neuroevolution comes from genetic algorithms, which are based on Darwin's theory of natural
+        selection. The algorithms mimic the process of selection along with the genetic operators of crossover and
+        mutation. In the selection process, chromosomes with better fitness are selected for reproduction. Crossover
+        exchanges subparts of the two parent chromosomes to produce an offspring. Then mutation randomly changes the
+        values of the chromosome. This process of selection, crossover, and mutation repeats until a solution is found.
+      </p>
+      <p>
+        Neuroevolution is applied to artificial neural networks, which are based on the structure and function of the
+        brain. In neural network visuals, circles represent neurons and the lines connecting them represent
+        synapses, which neurons use to communicate. In the neural network, synapses take a value from the input neurons,
+        multiply it by a specific weight, and output the result to the next layer of neurons. Neurons then take the
+        output from all connected synapses and apply an activiation function. This allows neural networks to model
+        complex nonlinear patterns.
+      </p>
+      <p>
+        In a neuroevolutionary algorithm, genetic algorithms are used to train neural networks, which allows for more
+        effective solutions. While neural networks provide an arhitecture for learning and making complex predictions,
+        genetic algorithms are good for search and optimization tasks. In this combination, genetic algorithms tweak the
+        parameters of a neural network to find the best solutions. These parameters include the weights, activation
+        functions, number of hidden layers, and the number of neurons in each layer to name a few.
+      </p>
+      <h3>Applications of Neuroevolution</h3>
+      <p>
+        Artificial intelligence and machine learning has been applied to a wide variety of problems. As a computer
+        science major, a problem that is intriguing to me is the problem of robotic control and autonomous navigation,
+        which presents an exciting challenge at the intersection of artificial intelligence and robotics. How can you
+        program a robot to navigate through an unknown and constantly changing environment? For example,
+        in the development of autonomous drones, the challenge of optimizing flight paths to navigate through complex
+        enviornments and perform tasks can be taken on by neural networks trained with neuroevolutionary algorithms.
+        Mimicing the adaptability and efficiency of biological systems, neural network-based controllers are able to
+        autonomously learn and adapt to dynamic enviornments, making decisions in real-time to produce the best results.
+      </p>
+      <p>
+        The ecological and societal impacts of artificially intelligent robots are endless. Sticking with autonomous
+        drones, they have the potential to revolutionize both industry and defense. In tasks such as farming,
+        environmental monitoring, and search and rescue operations, autonomous drones can effeciently fly through their
+        environment and collect valuable data without disrupting the ecosystem. In the department of defense, that same
+        functionality could be vital to surveillance and disaster response. Combining their navigation systems with
+        other intelligent control systems opens up even more capabilites, including delivery and military use.
+      </p>
+      <p>
+        As with most applications of artificial intelligence, autonomous drones and other autonomous robots present
+        concerns regarding safety, privacy, and ethical use. Addressing these problems will ensure the responsible
+        deployment and integration of these new technologies into our society.
+      </p>
+    </div>
+    <div class="text">
+      <h3>Simulating Neuroevolution with Flappy Bird</h3>
+      <p>
+        To gain a greater understanding of these biologically-inspired algorithms and concepts in computer science, I
+        created my own simple application of neuroevolution with a game everyone knows and loves: Flappy Bird.
+      </p>
+      <p>
+        The goal of the game is to fly through as many pipes as possible, earning points for each time you successfully
+        fly through a pipe. The game is relatively simple, but doing this yourself, while addictive, would also quickly
+        get tiring. So instead, I want to teach an AI to control the autonomous bird and "beat the game".
+      </p>
+      <p>
+        In order for a neural network to work, you need to provide it inputs, which are what your autonomous agent can
+        perceive of its enviornment. In the case of flappy bird, the two most important inputs are it's horizontal and
+        vertical distance from the next opening. These input vaules must be mapped to a value between 0 and 1, as that
+        is the form in which neural networks can process inputs. These normalized values are then passed through the
+        "hidden layers", multiplied by specific weights as it passes through each layer, until it reaches the output
+        layer. The outputs of a neural network are also simply values between 0 and 1, so these values need to be
+        translated into control actions. For flappy bird, there are two outputs: flap or don't flap. The model I
+        implemented performs whichever action has the greater value.
+      </p>
+      <p>
+        In many neural networks, the model is trained through a technique known as backpropagation. In these networks,
+        inputs are first passed forward to the output nodes, travelling through the hidden layers and having their
+        values multiplied by the weights of the connections. Then, the outputs are evaluated for errors, and that
+        information then makes a backward pass through the network to adjust the weights and biases of connections. This
+        is the training of the neural network that enables learning. However, since I am using neuroevolution to train
+        the neural network, I only need to pass information forward, and so I can use a feed-forward network. Rather
+        than using backpropagation, the modifying of weights is instead performed using the previously described
+        evolutionary traits. Instead of passing information back and forth through the same neural network, network
+        parameters are passed down to offspring in the reproduction process to create new birds with new
+        neural networks. These parameters are the genetic material that is crossed over and mutated to create
+        variations. This process introduces new and better models over generations in order to produce optimal results.
+      </p>
+      <p>
+        The evolutionary paramaters that will affect the performance of the genetic algorithms are the population size,
+        mutation rate, and selection pressure. Population size will influence how much variation is present and how much
+        potential there is for variation. Mutation rate also influences the amount of variation in a population. Too
+        little variation could result in the same networks appearing over and over, while too much variation would
+        hinder the population's ability to create optimal solutions. To choose the best parents for reproduction, I
+        implemented a weighted selection function that biases towards the most fit birds. The fitness score of each bird
+        is determined by how long they survive for. In this selection process, the best traits are the most likely to be
+        passed down, but it also allows other traits to remain present in the population. This allows the genetic
+        algorithm to explore more solutions and avoid getting trapped in "local minima". Neuroevolution is superior to
+        backpropagation in this aspect, as the process of gradient descent used in backpropagation is more susceptible
+        to falling into local minima depending on its inputs.
+      </p>
+      <p>
+        And with that, I have everything I need for a viable implementation of neuroevolution. In the simulation below,
+        I provided inputs for modifying some of the evolutionary parameters. Restart the simulation or wait for the next
+        generation for changes to go into effect and see how they affect the evolution of the flappy birds.
+      </p>
+    </div>
+
+    <div class="sim-container">
+      <div class="canvas-container">
+        <canvas></canvas>
+        <p id="num-gens">Generations: </p>
+      </div>
+      <div class="sim-menu">
+        <div>
+          <div class="param">
+            <p>Population Size</p>
+            <input id="population-size" type="number" min="2" />
+            <!-- Set a max to whatever the computer can reasonably handle -->
+          </div>
+          <div class="param">
+            <p>Mutation Rate (%)</p>
+            <input id="mutation-rate" type="number" min="1" max="100" />
+          </div>
+        </div>
+
+        <button id="reset">Restart Sim</button>
+      </div>
+    </div>
+
+
+    <div class="text">
+      <p>
+        Since the game Flappy Bird isn't as complex of a situation compared to something like robotic control and
+        navigation, the solution is relatively simple: flap if you're at or below the height to clear the bottom pipe.
+        With it's default settings, my implementation finds the optimal solution in
+        around 3-5 generations. Higher population sizes can solve the game in as little as 2 generations. These results
+        could likely be improved even further by adding in just a couple more parameters, such as the bird's velocity
+        and
+        position in the world, or by slightly modifying the fitness function, such as also awarding the bird for
+        successfully flying through pipes.
+      </p>
+      <p>
+        There's still many more parameters you could play around with to affect the training process, namely, the
+        neural network parameters. More advanced versions of this algorithm also adjust the number of neurons and the
+        connections between them, affecting the structure of the network. That algorithm is known as Neuro-Evolution of
+        Augmenting Topologies, or NEAT for short. However, with this simple simulation, I feel that I covered the
+        essential aspects of a neuroevolutionary system and demonstrated how this system could be applied to solve
+        complex problems.
+      </p>
+      <p>
+        <i>
+          This site and simulation was created as my reflection project for the class Bioengineering Fundamentals. If
+          you're interested in the code for the simulation, you can check it out <a
+            href="https://github.com/BrennanAndruss/NEAT-Flappy-Bird" target="_blank">here</a>.
+        </i>
+      </p>
+    </div>
   </div>
+
 </body>
 
 </html>

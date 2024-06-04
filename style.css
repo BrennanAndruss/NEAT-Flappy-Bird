@@ -2,19 +2,65 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Verdana";
+  color: #242424;
 }
 
-body {
-  overflow: hidden;
+.site-container {
+  margin: auto;
+  width: 75%;
+}
+
+.title {
+  margin: 20px auto;
+}
+
+.text p {
+  margin: 1em 0;
+}
+
+.text a {
+  color: revert;
+}
+
+.sim-container {
+  margin: 2em auto;
+  width: 480px;
 }
 
 .canvas-container {
-  margin: 2em;
+  height: 480px;
   display: flex;
-  justify-content: center;
 }
 
 canvas {
+  position: absolute;
   border: 1px solid lightgrey;
   border-radius: 4px;
+}
+
+.canvas-container p {
+  padding: 0.5em;
+}
+
+.sim-menu {
+  margin: 0.5em 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}
+
+.param {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.param p {
+  width: 150px;
+}
+
+.param input {
+  width: 60px;
+  text-align: center;
 }

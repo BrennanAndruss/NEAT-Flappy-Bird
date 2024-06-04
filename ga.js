@@ -3,9 +3,9 @@ import { birds, populationSize, savedBirds } from "./main.js";
 import NeuralNetwork from "./nn.js";
 
 export function reproduction() {
-  console.log("next generation");
-
   normalizeFitness();
+
+  // Create a new population of birds using genetic algorithms
   for (let i = 0; i < populationSize; i++) {
     let parentA = weightedSelection();
     let parentB = weightedSelection();
@@ -17,8 +17,8 @@ export function reproduction() {
   }
 
   // Clear memory of old birds and tensors
-  for (let i = 0; i < savedBirds.length; i++) {
-    savedBirds[i].dispose();
+  for (let bird of savedBirds) {
+    bird.dispose();
   }
 
   savedBirds.length = 0;
@@ -54,10 +54,9 @@ function crossover(parentA, parentB) {
       parentA.brain.outputNodes
     );
     childBrain.model.setWeights(childWeights);
+
     return new Bird(childBrain);
   });
-
-
 }
 
 function weightedSelection() {

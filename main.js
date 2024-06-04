@@ -10,26 +10,71 @@ canvas.width = 480;
 canvas.height = 480;
 
 
-export const populationSize = 200;
+// Set up TensorFlow.js
+tf.setBackend("cpu");
+
+
+// Set and get values from DOM elements
+export let populationSize = 50;
+const populationInput = document.getElementById("population-size");
+populationInput.value = populationSize;
+export let mutationRate = 0.1;
+const mutationInput = document.getElementById("mutation-rate");
+mutationInput.value = mutationRate * 100;
+
+populationInput.addEventListener("input", (e) => {
+  populationSize = Math.floor(e.target.value);
+  populationInput.value = populationSize;
+})
+
+mutationInput.addEventListener("input", (e) => {
+  mutationRate = e.target.value / 100;
+})
+
+document.getElementById("reset").addEventListener("click", (e) => {
+  reset();
+})
+
+let counter = 0;
+let generations = 1;
+
+
+// Handle the game logic
 export let birds = [];
 export let savedBirds = [];
 let pipes = [];
 
-let counter = 0;
-
 function init() {
-  tf.setBackend("cpu");
-
+  // Create an initial population of random birds
+  document.getElementById("num-gens").innerHTML = "Generations: " + generations;
   for (let i = 0; i < populationSize; i++) {
     birds.push(new Bird());
   }
 
+  // Start the draw loop
   requestAnimationFrame(draw);
 }
 
-window.addEventListener("mousedown", () => {
-  // bird.flap();
-});
+function reset() {
+  // Clear the current game state
+  for (let bird of birds) {
+    bird.dispose();
+  }
+  birds = [];
+  for (let bird of savedBirds) {
+    bird.dispose();
+  }
+  savedBirds = [];
+  pipes = [];
+  counter = 0;
+  generations = 1;
+
+  // Create a new random population
+  document.getElementById("num-gens").innerHTML = "Generations: " + generations;
+  for (let i = 0; i < populationSize; i++) {
+    birds.push(new Bird());
+  }
+}
 
 function draw() {
   // Set up the draw loop
@@ -72,6 +117,8 @@ function draw() {
   if (birds.length === 0) {
     counter = 0;
     reproduction();
+    generations++;
+    document.getElementById("num-gens").innerHTML = "Generations: " + generations;
     pipes = [];
   }
 }
