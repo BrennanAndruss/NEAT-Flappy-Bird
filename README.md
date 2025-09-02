@@ -5,4 +5,4 @@ A neuroevolution-based Flappy Bird AI along with a website to present the biolog
 - Created the Flappy Bird AI and game environment with JavaScript and HTML Canvas
 - Used Tensorflow.js to design and train neural networks with genetic algorithms
 
-Learn more about the project and neuroevolution [here](https://brennanandruss.github.io/)
+Learn more about the project and neuroevolution [here](https://brennanandruss.github.io/NEAT-Flappy-Bird/)
